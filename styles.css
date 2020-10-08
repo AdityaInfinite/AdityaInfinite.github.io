@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: #3a3a3a;
+    color: white;
+    font-family: 'roboto';
+    margin: 0px;
+    padding: 0px;
+
+}
+header {
+    background-color: black;
+    background-image: url("images/smokemask.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+    
+    text-align: center;
+    padding: 20px 10%;
+    height: 200px;
+}
+
+section.dLogo{
+    background: gray;
+    color: black;
+    padding: 100px;
+    display: block;
+    flex-direction: row;
+    text-align: center;    
+    background-image: url("images/GitHubS.png");
+    background-repeat: repeat;
+}
+section{
+    background: rgb(59, 59, 59);
+    color: white;
+    padding-top: 30px;
+    display: block;
+    text-align: center;
+    background-image: url("images/hacker.png");
+    background-repeat: repeat;
+    
+}
+li.ff {
+    display: list-item;
+    width: 50px;
+    margin: auto;
+    list-style-type: disc;
+    list-style-position: outside;
+    background-color: black;
+    padding: 0px;
+}
+img{
+    padding-bottom: 0px;    
+}
+section.graph{
+    background-image: none;
+    text-align: left;
+    padding-left: 20px;
+}
+
+section.logo{
+    background: gray;
+    background-image: url("images/knowledge.gif");
+    background-repeat: repeat-x;
+    color: black;
+    padding: 0px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+     
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+nav li {
+    display: inline-block;
+    width: 100px;
+    margin: auto;
+}
+footer {
+    background:  #252525;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    color: grey;
+    /* color: rgb(163, 168, 167); */
+}
+div {
+    background: red;
+    color: bisque;
+    margin: auto;
+    width: 100px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    color: gray;
+
+}
+.dLogo img{
+    width: 100px;
+}
+section.dLogo{
+    /* height: 350px; */
+    font-size: 20px;
+    text-align: center;
+}
+.end{
+    padding-left: 100px;
+}
+a.github{
+    position: relative;
+    top: -10px;
+}
+h1.title{
+    font-size: 70px;
+    text-shadow: none;
+}
+.gDescription{     /* */
+    color: chartreuse;
+    position: relative;
+    top: -225px;
+    left: 300px;
+}
+section.scrolling{
+    padding: 0px 0px 0px 0px;
+    background-image: none;
+    background-color: grey ;
+}
+/* li.graph{ */
+li.pr{
+    list-style-type: none;
+    position: relative;
+    left: 20px
+}
+text.gDescript{
+    position: relative;
+    left: 250px;
+    top: -125px;
+    color:chartreuse
+}
+img.da{
+    width: 96px;
+    height: 72px;
+    position: relative;
+    top: 20px;
+}
+section.da{
+    
+    background-color: grey;
+    
+        padding: 0px 0px 0px 0px;
+        background-image: none;
+    padding: 0px 0px 15px 0px;    
+    
+}
