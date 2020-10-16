@@ -5,13 +5,20 @@
 <html lang="en">
 
 <head>
+    <script src="jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mystery</title>
 </head>
 
 <body>
-    mystery
+    <p> mystery</p>
+    <script>
+        $("p").html("Mystery!");
+        $.get("images/test.txt", function (data) {
+            alert(data);
+        });
+    </script>
 </body>
 
 </html>
