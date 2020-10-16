@@ -14,9 +14,14 @@
 <body>
     <p> mystery</p>
     <script>
-        $("p").html("Mystery!");
+        $("p").html("Mystery!!");
         $.get("images/test.txt", function (data) {
+            console.log(data);
+        });
+        $.ajax("images/test.txt").done(function (data) {
             alert(data);
+        }).fail(function () {
+            alert("failed");
         });
     </script>
 </body>
