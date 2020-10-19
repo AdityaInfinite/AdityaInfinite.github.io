@@ -1,3 +1,3 @@
 # AdityaInfinite.github.io
-just a webpage  |  https://adityainfinite.github.io/
+just a website  |  https://adityainfinite.github.io/
 
