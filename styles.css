@@ -1,37 +1,5 @@
-html {
-    scroll-behavior: smooth;
-    text-decoration: none;
-}
-body {
-    background: #3a3a3a;
-    color: beige;
-    font-family: 'Roboto', sans-serif!important;
-    margin: 0px;
-    padding: 0px;
-}
-footer{
-    background-color: #3a3a3a;
-    color: gray;
-    padding: 10px;
-    margin: 0px;
-}
-nav{
-    vertical-align: center!important;
-}
-a{
-    text-decoration: none!important;
-    color:beige!important;
-}
-a.githubLink:hover {
-    text-decoration: none;
-    color: gray;
-}
-a.githubLink{
-    color: aliceblue;  
-}
-
 .home-jumbo{
-    background-image: url('https://adityainfinite.github.io/images/smokemask.png'); 
+    background-image: url("images/smokemask.png");  
     color: beige;
     margin: 0px!important;
     padding-bottom: 0px!important;
@@ -40,13 +8,16 @@ a.githubLink{
 ul.subNav li{
     display: inline-block;
     margin: 0px 8px!important;
+    padding: 10px!important;
+} 
+ul.subNav a{
+    text-decoration: none;
+    color: beige;
 } 
 ul{
     margin: 0px!important;
     padding: 0px!important;
-    padding-bottom: 10px!important;
-    list-style-type: none;
-    
+    list-style-type: none;   
 }
 .jumbotron {
     margin: 0px!important;
@@ -58,11 +29,7 @@ ul{
 .btn{
     margin: 1px!important;
 }
-svg{
-    position: relative;
-    top: 2px;
-    color: beige;
-}
+
 button span{
     color: beige;
 }

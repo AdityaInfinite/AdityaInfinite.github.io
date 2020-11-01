@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
-    <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="https://adityainfinite.github.io/images/TopLogo2.png">
-</head>
 
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../commonStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- including jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- including bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="../"><h2>Home</h2></a></li>
-                <li><a href="../graphs"><h2>Graphs</h2></a></li>
-                <li><a href="#"><h2>Projects</h2></a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><svg width="1em" height="1.0625em" viewBox="0 0 16 17"
+                class="bi bi-compass-fill navSvg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M15.5 8.516a7.5 7.5 0 1 1-9.462-7.24A1 1 0 0 1 7 0h2a1 1 0 0 1 .962 1.276 7.503 7.503 0 0 1 5.538 7.24zm-3.61-3.905L6.94 7.439 4.11 12.39l4.95-2.828 2.828-4.95z" />
+            </svg> Navigation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../graphs/">Graphs</a>
+                </li>
             </ul>
-        </nav>
-        <h1 class="title">Projects</h1>
-    </header>
-    <section class="scrolling">
-        <marquee direction="right" height="30" width="100%" bgcolor="#3a3a3a">More projects are bring added!</marquee>
-    </section>
-    <section class="da">
-        <h1><text class="da">All projects are </text><img class="da" src="https://adityainfinite.github.io/images/dalviLogo.png" alt="dalvi approved"> </h1>
-        
-    </section>
-    <section class="graph">
-        <li class="pr"><iframe frameborder='0' height='385' scrolling='no' src='https://www.hackster.io/arduinogeek15/automatic-plant-watrerotron-0c2282/embed' width='250'></iframe><text class="gDescription"><h1>AgroSmart v1</h1><br>see it here: <a href="https://www.hackster.io/arduinogeek15/automatic-plant-watrerotron-0c2282">https://www.hackster.io/arduinogeek15/automatic-plant-watrerotron-0c2282</a></text></li>
-        <li class="pr"><img src="https://adityainfinite.github.io/images/keylogger.png" alt=""><text class="gDescript"><h1>CMD Keylogger</h1><br>see it here: <a href="https://adityainfinite.github.io/KeyLogger/">KeyLogger</a></text></li>
-        <li class="pr"><img src="https://adityainfinite.github.io/images/webImg.PNG" alt=""><text class="gDescript"><h1>This website</h1><br>see it here: <a href="https://github.com/AdityaInfinite/AdityaInfinite.github.io">https://github.com/AdityaInfinite/AdityaInfinite.github.io</a></text></li>
-    </section>
-    <section class="logo">
-        <img src="https://adityainfinite.github.io/images/knowledge.gif" alt="knowledge">
-    </section>
-    <footer>
-        <img src="https://adityainfinite.github.io/images/GitHubS.png" alt="GitHub"><a href="https://github.com/AdityaInfinite" target="_blank" class="github"><text> Me on Github</text></a><br><br>© nobody 
-    </footer>
+
+        </div>
+    </nav>
 </body>
 </html>
