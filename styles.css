@@ -15,9 +15,12 @@ footer{
     padding: 10px;
     margin: 0px;
 }
-
+nav{
+    vertical-align: center!important;
+}
 a{
-    text-decoration: none;
+    text-decoration: none!important;
+    color:beige!important;
 }
 a.githubLink:hover {
     text-decoration: none;
@@ -30,8 +33,20 @@ a.githubLink{
 .home-jumbo{
     background-image: url('https://adityainfinite.github.io/images/smokemask.png'); 
     color: beige;
-    margin: 0px;
+    margin: 0px!important;
     padding-bottom: 0px!important;
+    text-align: center;
+}
+ul.subNav li{
+    display: inline-block;
+    margin: 0px 8px!important;
+} 
+ul{
+    margin: 0px!important;
+    padding: 0px!important;
+    padding-bottom: 10px!important;
+    list-style-type: none;
+    
 }
 .jumbotron {
     margin: 0px!important;
