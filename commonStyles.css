@@ -28,3 +28,6 @@ a.githubLink{
     top: 2px;
     color: beige;
 }
+.jumbotron {
+    margin: 0px!important;
+}
