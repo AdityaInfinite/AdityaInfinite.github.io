@@ -84,7 +84,9 @@
             <hr style="height: 0.01px;background: gray;"><br>
             <div>
                 <h1 class="dispaly-6">My Github</h1>
-                <button type="button" class="btn btn-lg btn-success">
+                <button type="button" id="commitsButton" class="btn btn-lg btn-success" data-placement="bottom"
+                    data-toggle="popover" title="My Commits"
+                    data-content="<a href='https://www.youtube.com' target='_blank'>link</a>">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -92,7 +94,8 @@
                     </svg>
                     <span id="commits"> Commits</span>
                 </button>
-                <button type="button" class="btn btn-lg btn-primary ">
+                <button type="button" id="repoButton" class="btn btn-lg btn-primary " data-placement="bottom"
+                    data-toggle="popover" title="My Repositories" data-content="Repos">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -100,7 +103,8 @@
                     </svg>
                     <span id="repos">Repos</span>
                 </button>
-                <button type="button" class="btn btn-lg btn-warning">
+                <button type="button" id="prButton" class="btn btn-lg btn-warning" data-placement="bottom"
+                    data-toggle="popover" title="My Pull Requests" data-content="">
                     <svg class="octicon text-white" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
                         <path fill-rule="evenodd"
                             d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z" />
@@ -118,13 +122,16 @@
         © nobody
     </footer>
 
-    <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-
     <script src="getGithubInfo.js"></script>
     <script>
         $(function () {
-            $('[data-toggle="popover"]').popover()
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                container: 'body'
+            })
         })
+
+
     </script>
 
 </body>
