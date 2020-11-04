@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +19,10 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script src="https://www.desmos.com/api/v1.5/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6&lang=es-ES"></script>
+    <script
+        src="https://www.desmos.com/api/v1.5/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6&lang=es-ES"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"><svg width="1em" height="1.0625em" viewBox="0 0 16 17"
@@ -46,7 +49,7 @@
             </ul>
         </div>
     </nav>
-    
+
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Graphs</h1>
@@ -54,21 +57,86 @@
         </div>
     </div>
 
-    <div id="calculator" style="width: 600px; height: 400px;"></div>
+    <div class="container desmosAPI" style="padding: 50px 0px;">
+        <h1 class="display-5">Plot your own scientific graphs!</h1>
+        <br>
+        <div id="calculator" style="width: 600px; height: 400px;"></div>
+
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4.5 column">
+                    <div class="card" style="margin: 10px;">
+                        <iframe src="https://www.desmos.com/calculator/n5cyfbhngx?embed" height="250px"
+                            style="border: 1px solid #ccc" frameborder=0 class="card-img-top"></iframe>
+                        <div class="card-body">
+                            <h5 class="card-title">Chords of a circle</h5>
+                            <p class="card-text">Chord lengths of a circle are plotted</p>
+                            <a href="https://www.desmos.com/calculator/n5cyfbhngx" target="_blank"
+                                class="btn btn-primary">More info</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4.5 column">
+                    <div class="card" style="margin: 10px;">
+                        <iframe src="https://www.desmos.com/calculator/klsr4dzaic?embed" height="250px"
+                            style="border: 1px solid #ccc" frameborder=0 class="card-img-top"></iframe>
+                        <div class="card-body">
+                            <h5 class="card-title">Batman</h5>
+                            <p class="card-text">Because Batman</p>
+                            <a href="https://www.desmos.com/calculator/klsr4dzaic" target="_blank"
+                                class="btn btn-primary">More info</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4.5 column">
+                    <div class="card" style="margin: 10px;">
+                        <iframe src="https://www.desmos.com/calculator/hzmlwudccr?embed" height="250px"
+                            style="border: 1px solid #ccc" frameborder=0 class="card-img-top"></iframe>
+                        <div class="card-body">
+                            <h5 class="card-title">Time period of a pendum</h5>
+                            <p class="card-text">X:legth  Y:time period</p>
+                            <a href="https://www.desmos.com/calculator/hzmlwudccr" target="_blank"
+                                class="btn btn-primary">More info</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4.5 column">
+                    <div class="card" style="margin: 10px;">
+                        <iframe src="https://www.desmos.com/calculator/clc9i74hxj?embed" height="250px"
+                            style="border: 1px solid #ccc" frameborder=0 class="card-img-top"></iframe>
+                        <div class="card-body">
+                            <h5 class="card-title">Time taken to fall</h5>
+                            <p class="card-text">X:height  Y:Time </p>
+                            <a href="https://www.desmos.com/calculator/clc9i74hxj" target="_blank"
+                                class="btn btn-primary">More info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <img src="../images/GitHubS.png" alt="GitHub">
         <a href="https://github.com/AdityaInfinite" target="_blank" class="githubLink"> Me on Github</a>
-        <br><p class="float-right"><a href="#"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-          </svg></a></p><br>
+        <br>
+        <p class="float-right"><a href="#"><svg width="2em" height="2em" viewBox="0 0 16 16"
+                    class="bi bi-arrow-up-circle-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                </svg></a></p><br>
         © nobody
     </footer>
+
 
     <script>
         var elt = document.getElementById('calculator');
         var calculator = Desmos.GraphingCalculator(elt);
         calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
-      </script>
+    </script>
 </body>
+
 </html>
