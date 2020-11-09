@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
         <a class="navbar-brand" href="#"><svg width="1em" height="1.0625em" viewBox="0 0 16 17"
                 class="bi bi-compass-fill navSvg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -54,6 +54,12 @@
                 </li>
             </ul>
 
+            <button class="btn btn-dark my-2 my-sm-0" id="darkModeToggle">
+                <svg width="1em" style="padding: 0px; margin: 0px;" height="1em" viewBox="0 0 16 16"
+                    class="bi bi-circle-half" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+                </svg>
+            </button>
         </div>
     </nav>
 
@@ -76,7 +82,7 @@
         </div>
     </div>
 
-    <div class="jumbotron jumbotron-fluid aboutMe">
+    <div class="jumbotron jumbotron-fluid" id="aboutMe">
         <div class="container ">
             <h1 class="display-4">About me</h1>
             <p class="lead">I am a 13 year old STEM enthusiast</p>
@@ -114,12 +120,13 @@
                     <span id="prs">Pull Requests</span>
                 </button>
                 <br><br>
-                <div class="card">
+                <div class="card" id="chekOutOnGHCard">
                     <div class="card-body">
-                      <h5 class="card-title">Check the repositories on GitHub</h5>
-                      <a href="https://github.com/AdityaInfinite" target="_blank" class="btn btn-primary"><img src="images/GitHubS.png" alt="link to github"></a>
+                        <h5 class="card-title">Check the repositories on GitHub</h5>
+                        <a href="https://github.com/AdityaInfinite" target="_blank" class="btn btn-primary"><img
+                                src="images/GitHubS.png" alt="link to github"></a>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -127,13 +134,17 @@
     <footer>
         <img src="images/GitHubS.png" alt="GitHub">
         <a href="https://github.com/AdityaInfinite" target="_blank" class="githubLink"> Me on Github</a>
-        <br><p class="float-right"><a href="#"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-          </svg></a></p><br>
+        <br>
+        <p class="float-right"><a href="#"><svg width="2em" height="2em" viewBox="0 0 16 16"
+                    class="bi bi-arrow-up-circle-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                </svg></a></p><br>
         © nobody
     </footer>
 
     <script src="getGithubInfo.js"></script>
+    <script src="darkModeToggler.js"></script>
     <script>
         $(function () {
             $('[data-toggle="popover"]').popover({

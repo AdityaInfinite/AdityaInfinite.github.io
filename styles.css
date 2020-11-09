@@ -19,7 +19,7 @@ ul{
     padding: 0px!important;
     list-style-type: none;   
 }
-.aboutMe{
+#aboutMe{
     align-items: center;
     text-align: center;
 }
@@ -29,4 +29,12 @@ ul{
 
 button span{
     color: beige;
+}
+
+.darkAboutMe{
+    background-color: #232627!important;
+    color: beige!important;
+}
+.darkCard{
+    background-color: #181A1B!important;
 }
