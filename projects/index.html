@@ -9,19 +9,18 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="../commonStyles.css">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- including jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- including bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="..\bootstrap-4.5.3-dist/css/bootstrap.min.css">
+
+    <script src="../bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- including other dependencies -->
-    <script src= 
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
-    </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> </script>
 </head>
 
 <body>
@@ -49,7 +48,8 @@
                 </li>
             </ul>
 
-            <button class="btn btn-dark my-2 my-sm-0" id="darkModeToggle" data-toggle="tooltip" data-placement="bottom" title="Toggle dark mode">
+            <button class="btn btn-dark my-2 my-sm-0" id="darkModeToggle" data-toggle="tooltip" data-placement="bottom"
+                title="Toggle dark mode">
                 <svg width="1em" style="padding: 0px; margin: 0px;" height="1em" viewBox="0 0 16 16"
                     class="bi bi-circle-half" fill="white" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
@@ -66,22 +66,24 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <div class="spinner-border"  id="loading" role="status" style="margin: 100px 0px;">
+        <div class="spinner-border" id="loading" role="status" style="margin: 100px 0px;">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    
+
     <div class="container" id="projectsContainer">
-        <div class='row'  id="projectsDiv"></div>
+        <div class='row' id="projectsDiv"></div>
     </div>
 
     <footer>
         <img src="../images/GitHubS.png" alt="GitHub">
         <a href="https://github.com/AdityaInfinite" target="_blank" class="githubLink"> Me on Github</a>
         <br>
-        <p class="float-right"><a href="#"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-          </svg></a></p><br>
+        <p class="float-right"><a href="#"><svg width="2em" height="2em" viewBox="0 0 16 16"
+                    class="bi bi-arrow-up-circle-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                </svg></a></p><br>
         © nobody
     </footer>
 
