@@ -17,8 +17,6 @@ async function show(data) {
         const response2 = await fetch(`https://raw.githubusercontent.com/AdityaInfinite/${r.name}/${r.default_branch}/description.json`);
         console.log(response2.status);
         if (response2.status != 404) {
-
-
             var data2 = await response2.json();
             if (data2.isProject == true) {
                 img = `https://github-readme-stats.vercel.app/api/pin/?username=AdityaInfinite&theme=dark&repo=${r.name}`;
