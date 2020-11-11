@@ -11,16 +11,20 @@ async function getInfo() {
     }
     show(data);
 }
-async function show(data){
+async function show(data) {
     let tab = "";
-    for(let r of data){
+    for (let r of data) {
         const response2 = await fetch(`https://raw.githubusercontent.com/AdityaInfinite/${r.name}/${r.default_branch}/description.json`);
-        var data2 = await response2.json();
-        if(data2.isProject == true){
-            img = `https://github-readme-stats.vercel.app/api/pin/?username=AdityaInfinite&theme=dark&repo=${r.name}`;
+        console.log(response2.status);
+        if (response2.status != 404) {
 
-            tab +=
-                `<div class="col-sm-4.5" style="margin: 10px">
+
+            var data2 = await response2.json();
+            if (data2.isProject == true) {
+                img = `https://github-readme-stats.vercel.app/api/pin/?username=AdityaInfinite&theme=dark&repo=${r.name}`;
+
+                tab +=
+                    `<div class="col-sm-4.5" style="margin: 10px">
                 <div class="card">
                 <img src="${img}" class="card-img-top" alt="repoImage"></img>
                 <div class="card-body">
@@ -30,6 +34,7 @@ async function show(data){
                 </div>
                 </div>
             </div>`;
+            }
         }
     }
     $("#projectsDiv").html(tab);
