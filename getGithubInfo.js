@@ -1,5 +1,6 @@
 buttonText();
 popoverText();
+CommitButton();
 async function buttonText() {
     const response = await fetch("https://api.github.com/users/AdityaInfinite");
     var data = await response.json();
@@ -33,4 +34,21 @@ async function popoverText() {
     }
     tab2 += "</ul>";
     $("#prButton").attr("data-content", tab2);
+}
+
+async function CommitButton() {
+    var commits = 0;
+    const reposResponce = await fetch(`https://api.github.com/users/AdityaInfinite/repos`);
+    var repos = await reposResponce.json();
+    for (r of repos) {
+        const reposCommits = await fetch(`https://api.github.com/repos/AdityaInfinite/${r.name.toLowerCase()}/stats/contributors`);
+        var repoCommits = await reposCommits.json();
+        for(var s = 0; s < repoCommits.length; s++){
+            if (repoCommits[s].author.login == "AdityaInfinite") {
+                commits += repoCommits[s].total;
+            }
+        }
+    }
+    console.log(`total commits: ${commits}`);
+    $("#commits").html(`${commits} Commits`);
 }
