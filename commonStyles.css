@@ -42,3 +42,12 @@ a.githubLink{
 .darkContentCard{
     background-color: #232627!important;
 }
+body::-webkit-scrollbar{
+    width: 0.35rem;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: #343A40;
+}
+body::-webkit-scrollbar-track{
+    background-color: #E9ECEF;
+}
