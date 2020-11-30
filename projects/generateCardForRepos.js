@@ -23,17 +23,17 @@ async function show(data) {
 
                 tab +=
                     `<div class="col-sm-4.5" style="margin: 10px">
-                <div class="card">
-                <img src="${img}" class="card-img-top" alt="repoImage"></img>
-                <div class="card-body">
-                    <h5 class="card-title">${r.name}</h5>
-                    <p class="card-text">${data2.description}</p>
-                    <a href="${r.html_url}" target="_blank" class="btn btn-primary">More info</a>
-                </div>
-                </div>
-            </div>`;
+                        <div class="card">
+                        <img src="${img}" class="card-img-top" alt="repoImage"></img>
+                        <div class="card-body">
+                            <h5 class="card-title">${r.name}</h5>
+                            <p class="card-text">${data2.description}</p>
+                            <a href="${r.html_url}" target="_blank" class="btn btn-primary">More info</a>
+                        </div>
+                        </div>
+                    </div>`;
             }
         }
+        $("#projectsDiv").html(tab);
     }
-    $("#projectsDiv").html(tab);
 }
