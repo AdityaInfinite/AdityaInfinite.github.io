@@ -16,7 +16,7 @@ async function show(data) {
             	<img src="${img}" class="card-img-top" alt="repoImage"></img>
             	<div class="card-body">
             	    <h5 class="card-title">${projects[i]}</h5>
-            	    <a href="https://www.github.com/${projects[i]}" target="_blank" class="btn btn-primary">More info</a>
+            	    <a href="https://www.github.com/AdityaInfinite/${projects[i]}" target="_blank" class="btn btn-primary">More info</a>
             	</div>
             </div>
         </div>`;
