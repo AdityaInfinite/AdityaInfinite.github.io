@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>code</title>
+</head>
+<body>
+    <pre>
+        <font color="#95a5a6">&#47;*</font>
+        <font color="#95a5a6">Author: Aditya Dalvi</font>
+        <font color="#95a5a6">Date:24&#47;2&#47;2021</font>
+        <font color="#95a5a6">Name: code.ino</font>
+        <font color="#95a5a6">Project: Agrosmart</font>
+        <font color="#95a5a6">*&#47;</font>
+        
+        <font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+        <font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">DS3231</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+        <font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SPI</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+        <font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+        <font color="#5e6d03">#define</font> <font color="#000000">numOfSensors</font> <font color="#000000">2</font>
+        
+        <b><font color="#d35400">DS3231</font></b> <font color="#000000">rtc</font><font color="#000000">(</font><font color="#00979c">SDA</font><font color="#434f54">,</font> <font color="#00979c">SCL</font><font color="#000000">)</font><font color="#000000">;</font>
+        
+        <font color="#00979c">int</font> <font color="#000000">val</font><font color="#000000">[</font><font color="#000000">numOfSensors</font><font color="#000000">]</font><font color="#000000">;</font>
+        <b><font color="#d35400">Time</font></b> <font color="#000000">t</font><font color="#000000">;</font>
+        
+        <font color="#00979c">const</font> <font color="#00979c">int</font> <font color="#000000">ledPin</font> <font color="#434f54">=</font> <font color="#000000">2</font><font color="#000000">;</font>
+        <font color="#00979c">int</font> <font color="#000000">ledState</font> <font color="#434f54">=</font> <font color="#00979c">LOW</font><font color="#000000">;</font>
+        <font color="#00979c">unsigned</font> <font color="#00979c">long</font> <font color="#000000">previousMillis</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+        <font color="#00979c">bool</font> <font color="#000000">SDInit</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+        <font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">2000</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">rtc</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">pinMode</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">OUTPUT</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Setup finished&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;Initializing SD card...&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#434f54">!</font><b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">4</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;initialization failed!&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">SDInit</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font><font color="#5e6d03">else</font><font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;initialization done.&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font>
+         &nbsp;<font color="#d35400">File</font> <font color="#000000">dataFile</font> <font color="#434f54">=</font> <b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#d35400">open</font><font color="#000000">(</font><font color="#005c5f">&#34;datalog.txt&#34;</font><font color="#434f54">,</font> <font color="#00979c">FILE_WRITE</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">dataFile</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34; v2 start: &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">rtc</font><font color="#434f54">.</font><font color="#d35400">getDateStr</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">rtc</font><font color="#434f54">.</font><font color="#d35400">getTimeStr</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">close</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;written&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font> <font color="#5e6d03">else</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;error opening datalog.txt&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font>
+        <font color="#000000">}</font>
+        
+        <font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;<font color="#00979c">int</font> <font color="#000000">sum</font> <font color="#434f54">=</font><font color="#000000">0</font> <font color="#434f54">,</font> <font color="#000000">avg</font> <font color="#434f54">=</font><font color="#000000">0</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">t</font> <font color="#434f54">=</font> <font color="#000000">rtc</font><font color="#434f54">.</font><font color="#d35400">getTime</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">val</font><font color="#000000">[</font><font color="#000000">0</font><font color="#000000">]</font> <font color="#434f54">=</font> <font color="#d35400">map</font><font color="#000000">(</font><font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">A0</font><font color="#000000">)</font><font color="#434f54">,</font> <font color="#000000">700</font><font color="#434f54">,</font> <font color="#000000">200</font><font color="#434f54">,</font> <font color="#000000">0</font><font color="#434f54">,</font> <font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">val</font><font color="#000000">[</font><font color="#000000">1</font><font color="#000000">]</font> <font color="#434f54">=</font> <font color="#d35400">map</font><font color="#000000">(</font><font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">A1</font><font color="#000000">)</font><font color="#434f54">,</font> <font color="#000000">700</font><font color="#434f54">,</font> <font color="#000000">200</font><font color="#434f54">,</font> <font color="#000000">0</font><font color="#434f54">,</font> <font color="#000000">100</font><font color="#000000">)</font><font color="#000000">;</font>
+        
+         &nbsp;<font color="#5e6d03">for</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">i</font><font color="#434f54">=</font><font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">i</font> <font color="#434f54">&lt;</font> <font color="#000000">numOfSensors</font><font color="#000000">;</font> <font color="#000000">i</font><font color="#434f54">++</font><font color="#000000">)</font><font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">sum</font> <font color="#434f54">=</font> <font color="#000000">sum</font> <font color="#434f54">+</font> <font color="#000000">val</font><font color="#000000">[</font><font color="#000000">i</font><font color="#000000">]</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font>
+         &nbsp;<font color="#000000">avg</font> <font color="#434f54">=</font> <font color="#000000">sum</font><font color="#434f54">&#47;</font><font color="#000000">numOfSensors</font><font color="#000000">;</font>
+         &nbsp;
+         &nbsp;<font color="#00979c">String</font> <font color="#000000">PrintString</font> <font color="#434f54">=</font> <font color="#000000">rtc</font><font color="#434f54">.</font><font color="#d35400">getTimeStr</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#434f54">+</font> <font color="#00979c">String</font><font color="#000000">(</font><font color="#005c5f">&#34; &#34;</font><font color="#000000">)</font> <font color="#434f54">+</font> <font color="#000000">rtc</font><font color="#434f54">.</font><font color="#d35400">getDateStr</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#5e6d03">for</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">j</font><font color="#434f54">=</font><font color="#000000">0</font><font color="#000000">;</font> <font color="#000000">j</font><font color="#434f54">&lt;</font><font color="#000000">numOfSensors</font><font color="#000000">;</font> <font color="#000000">j</font><font color="#434f54">++</font><font color="#000000">)</font><font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">PrintString</font> <font color="#434f54">+=</font> <font color="#00979c">String</font><font color="#000000">(</font><font color="#005c5f">&#34; val&#34;</font><font color="#000000">)</font><font color="#434f54">+</font><font color="#00979c">String</font><font color="#000000">(</font><font color="#000000">j</font><font color="#000000">)</font><font color="#434f54">+</font><font color="#00979c">String</font><font color="#000000">(</font><font color="#005c5f">&#34;: &#34;</font><font color="#000000">)</font><font color="#434f54">+</font><font color="#00979c">String</font><font color="#000000">(</font><font color="#000000">val</font><font color="#000000">[</font><font color="#000000">j</font><font color="#000000">]</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font>
+         &nbsp;<font color="#000000">PrintString</font> <font color="#434f54">+=</font> <font color="#00979c">String</font><font color="#000000">(</font><font color="#005c5f">&#34; avg:&#34;</font><font color="#000000">)</font> <font color="#434f54">+</font> <font color="#00979c">String</font><font color="#000000">(</font><font color="#000000">avg</font><font color="#000000">)</font><font color="#000000">;</font>
+        
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">PrintString</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#95a5a6">&#47;*t.min == 00 &amp;&amp; *&#47;</font><font color="#000000">t</font><font color="#434f54">.</font><font color="#d35400">sec</font> <font color="#434f54">==</font> <font color="#000000">00</font> <font color="#434f54">&amp;&amp;</font> <font color="#000000">SDInit</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;Logging&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#d35400">File</font> <font color="#000000">dataFile</font> <font color="#434f54">=</font> <b><font color="#d35400">SD</font></b><font color="#434f54">.</font><font color="#d35400">open</font><font color="#000000">(</font><font color="#005c5f">&#34;datalog.txt&#34;</font><font color="#434f54">,</font> <font color="#00979c">FILE_WRITE</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">dataFile</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">PrintString</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">dataFile</font><font color="#434f54">.</font><font color="#d35400">close</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;written&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">}</font> <font color="#5e6d03">else</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;error opening datalog.txt&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">500</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">2</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+         &nbsp;<font color="#000000">}</font>
+        
+         &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#95a5a6">&#47;*t.hour == 10 &amp;&amp; t.min == 00 &amp;&amp; *&#47;</font><font color="#000000">t</font><font color="#434f54">.</font><font color="#d35400">sec</font> <font color="#434f54">==</font> <font color="#000000">10</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;water &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">avg</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">water</font><font color="#000000">(</font><font color="#000000">avg</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font>
+         &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+        <font color="#000000">}</font>
+        <font color="#00979c">void</font> <font color="#000000">water</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">avg</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;<font color="#00979c">int</font> <font color="#000000">duration</font> <font color="#434f54">=</font> <font color="#d35400">map</font><font color="#000000">(</font><font color="#000000">avg</font><font color="#434f54">,</font> <font color="#000000">0</font> <font color="#434f54">,</font> <font color="#000000">100</font> <font color="#434f54">,</font> <font color="#000000">10</font> <font color="#434f54">,</font> <font color="#000000">1</font> <font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">duration</font> <font color="#434f54">&lt;</font> <font color="#000000">0</font><font color="#000000">)</font> <font color="#000000">{</font>
+         &nbsp;&nbsp;&nbsp;<font color="#000000">duration</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+         &nbsp;<font color="#000000">}</font>
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#005c5f">&#34;starting watering, duration = &#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">duration</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">delay</font><font color="#000000">(</font><font color="#000000">duration</font> <font color="#434f54">*</font> <font color="#000000">1000</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">3</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+         &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">&#34;.....done watering&#34;</font><font color="#000000">)</font><font color="#000000">;</font>
+        <font color="#000000">}</font>
+        
+        </pre>
+</body>
+</html>
